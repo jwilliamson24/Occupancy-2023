@@ -30,7 +30,7 @@ trt.int.inv <- inv.logit(TreatmentIntercept)
 treatment_matrix <- trt.int.inv # Using the inv logit treatment estimates
 
 
- box.colors.1 <- c('#b967ff','steelblue', 'coral2', '#f9d62e','lightgreen' )
+ box.colors.1 <- c('lightgreen','steelblue', 'coral2', '#f9d62e','#b967ff' )
 # boxplot(TreatmentIntercept_new, 
 #         main= "treatment effect size",
 #         xlab = "trt difference from control",
@@ -50,9 +50,12 @@ colnames(trt.diff.new) <- new.names
 desired.order <- c("Control", "Wildfire", "Harvest, Wildfire", "Harvest", "Salvage Logged")
 
 # Boxplot showing negative effect sizes of each treatment
+filename<- "figures/Trt_effect_size_nimble/Boxplor_trt_effect_size_nimble.png"
+png(filename=filename)
 boxplot(trt.diff.new [, match(desired.order, colnames(trt.diff.new))], 
         main= "Effect Size by Treatment",
         xlab = "Treatment",
         ylab = "Effect Size",
         col = box.colors.1)
 
+dev.off()
