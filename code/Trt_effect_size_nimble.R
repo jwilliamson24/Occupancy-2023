@@ -50,12 +50,10 @@ colnames(trt.diff.new) <- new.names
 desired.order <- c("Control", "Wildfire", "Harvest, Wildfire", "Harvest", "Salvage Logged")
 
 # Boxplot showing negative effect sizes of each treatment
-filename<- "figures/Trt_effect_size_nimble/Boxplor_trt_effect_size_nimble.png"
-png(filename=filename)
+png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Trt_effect_size_nimble/Boxplot_trt_effect.png")
 boxplot(trt.diff.new [, match(desired.order, colnames(trt.diff.new))], 
         main= "Effect Size by Treatment",
         xlab = "Treatment",
         ylab = "Effect Size",
         col = box.colors.1)
-
 dev.off()
