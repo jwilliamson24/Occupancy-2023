@@ -23,15 +23,20 @@ BS | Burned, salvage logged | 9
 #### [*Trt_occu_prob_nimble*](C:\Users\jasmi\OneDrive\Documents\Occupancy-2023\code\Trt_occu_prob_nimble.R): custom bayesian Nimble code for all spp model resulting in plot that shows occupancy probability estimates of treatments
 #### [*Unmarked_occu_TWS_2023*](C:\Users\jasmi\OneDrive\Documents\Occupancy-2023\code\Unmarked_occu_TWS_2023.R): initial occupancy analysis efforts for both spp using unmarked package, presented at TWS 2023
 
-## Key Takeaways
-
-![figure](figures\Counts_figures_2023\barplot_counts_standardized.png)
+## Modeling
 
 The current nimble model (Jan 2024) uses data for both species according to the following equation:
 
 
+## Key Takeaways
 
+Standardized counts of salamanders in 2023 by treatment:
+![counts figure](figures\Counts_figures_2023\barplot_counts_standardized.png)
 
 The resulting occupancy estimates:
 
+![All species occu estimates boxplot](figures\Trt_occu_prob_nimble\Boxplot_trt_occu_prob_nimble.png)
+
 The resulting effect sizes:
+
+![All species treatment effect sizes boxplot](figures\Trt_effect_size_nimble\Boxplor_trt_effect_size_nimble.png)

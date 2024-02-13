@@ -1,8 +1,8 @@
 
-# Pleth Biologist Conference Figures
+# Plethodontid Biologist Conference Figures - Exploratory 2023 Data Analysis
 
-#####
 
+rm(list=ls())
 library(ggplot2)
 library(unmarked)
 library(RColorBrewer)
@@ -16,17 +16,14 @@ treatmentcount <- read.csv("OSS_data_2023_treatmentcount.csv")
 treatmentcount.species <- read.csv("treatmentcount.species.csv")
 temp <- read.csv("OSS_data_2023_temp.csv")
 
-#head(temp)
-#head(treatmentcount)
-
 # Reshape the data for count by species
 reshaped_data <- treatmentcount.species %>%
   pivot_longer(cols = c(enes, oss), names_to = "species", values_to = "count")
 
 
-##--------------------------------------------------------------------------------------------
 # Barplot of counts by date
 
+png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory/counts by date 2023.png")
 barplot(counts$count,
         space=1,
         main="Counts by Date",
@@ -35,12 +32,11 @@ barplot(counts$count,
         col=terrain.colors
         (length(unique(counts$month)))
         [as.factor(counts$month)])
+dev.off()
 
 # Basic climate plots
 
-plot(temp$ID~temp$Temp)
-
-temps <- ggplot(temp, aes(x = ID, y = Temp, group = 1)) +
+ggplot(temp, aes(x = ID, y = Temp, group = 1)) +
         geom_point(color="blue") +
         geom_line(color="blue", linewidth=2) +
         theme_classic()+
@@ -52,13 +48,35 @@ temps <- ggplot(temp, aes(x = ID, y = Temp, group = 1)) +
                 legend.background = element_rect(fill='transparent'),
                 legend.box.background = element_rect(fill='transparent')
         )
-temps
+ggsave("temp_line.png", temps, bg="transparent", 
+  path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory")
 
-ggsave("templine1.png", temps, bg="transparent")
 
 
-##----------------------------------------------------------------------------------------------------
-# Boxplots of treatment and spp counts
+##------------------------------------------------------------------------------------------------------
+
+
+#A bar for each spp, color fill by species
+ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
+  geom_bar(stat='identity', position='dodge') +
+  ggtitle('Salamander Counts by Treatment and Species') +
+  xlab('Treatment') +
+  ylab('Count') +
+  scale_fill_manual('Species', values=c('coral2','steelblue'))
+ggsave("counts by trt spp 2023.png", 
+      path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory")
+
+
+#A single bar with enes and oss counts
+ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment)) +
+  geom_bar(stat='identity', position='dodge') +
+  ggtitle('Salamander Counts by Treatment and Species') +
+  xlab('Treatment') +
+  ylab('Count')
+
+
+
+#The code below is to be used for plotting reference; these are not good/usable plots
 
 # Boxplot by treatment
 p1 <- ggplot(treatmentcount, aes(x=treatment, y=count, fill=treatment)) + 
@@ -80,28 +98,6 @@ p3 <- ggplot(reshaped_data, aes(x = treatment, y = count, fill = treatment, line
   scale_fill_manual(values = scales::brewer_pal(palette = "Dark2")(n_distinct(reshaped_data$treatment))) +
   scale_linetype_manual(values = c("solid", "dashed")) +
   theme(legend.position = "top")
-
-p3
-
-
-
-##------------------------------------------------------------------------------------------------------
-# Bar plot of counts by treatment and species
-
-#A single bar with enes and oss counts
-ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment)) +
-  geom_bar(stat='identity', position='dodge') +
-  ggtitle('Salamander Counts by Treatment and Species') +
-  xlab('Treatment') +
-  ylab('Count')
-
-#A bar for each spp, color fill by species
-ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
-  geom_bar(stat='identity', position='dodge') +
-  ggtitle('Salamander Counts by Treatment and Species') +
-  xlab('Treatment') +
-  ylab('Count') +
-  scale_fill_manual('Species', values=c('coral2','steelblue'))
 
 #Color fill by treatment, pattern by species
 ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment, pattern=species)) +

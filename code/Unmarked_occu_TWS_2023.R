@@ -87,7 +87,7 @@ site_preds4 <- cbind(sites_trt, preds4)
 
 
 # Barplot of predictions for each treatment
-p1 <- ggplot(site_preds4, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper, fill = treatment)) +
+ggplot(site_preds4, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper, fill = treatment)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
   geom_errorbar(aes(ymax = upper, ymin = lower), width = 0.25, position = position_dodge(width = 0.7), linewidth = 1) +
   labs(title = "OSS: Treatment vs. Predicted Occupancy",
@@ -95,10 +95,11 @@ p1 <- ggplot(site_preds4, aes(x = treatment, y = Predicted, ymin = lower, ymax =
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
+ggsave("unmarked_occu_barplot_oss.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 # Boxplot of preds with confidence intervals
-p2 <- ggplot(site_preds4, aes(x = treatment, y = Predicted, fill = treatment)) +
+ggplot(site_preds4, aes(x = treatment, y = Predicted, fill = treatment)) +
   geom_boxplot() +
   geom_point(position = position_dodge(width = 0.75), size = 3) +
   geom_errorbar(aes(ymax = upper, ymin = lower), width = 0.25, position = position_dodge(width = 0.75), size = 1) +
@@ -107,6 +108,7 @@ p2 <- ggplot(site_preds4, aes(x = treatment, y = Predicted, fill = treatment)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
+ggsave("unmarked_occu_pt_est_oss.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 ## ENES Top Model Exploration-------------------------------------------------------------------------------
@@ -145,7 +147,7 @@ site_preds8 <- cbind(sites_trt, preds8)
 
 
 # Barplot of predictions for each treatment
-p3 <- ggplot(site_preds8, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper, fill = treatment)) +
+ggplot(site_preds8, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper, fill = treatment)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
   geom_errorbar(aes(ymax = upper, ymin = lower), width = 0.25, position = position_dodge(width = 0.7), linewidth = 1) +
   labs(title = "ENES: Treatment vs. Predicted Occupancy",
@@ -153,10 +155,11 @@ p3 <- ggplot(site_preds8, aes(x = treatment, y = Predicted, ymin = lower, ymax =
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
+ggsave("unmarked_occu_barplot_enes.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 # Boxplot of preds with confidence intervals
-p4 <- ggplot(site_preds8, aes(x = treatment, y = Predicted, fill = treatment)) +
+ggplot(site_preds8, aes(x = treatment, y = Predicted, fill = treatment)) +
   geom_boxplot() +
   geom_point(position = position_dodge(width = 0.75), size = 3) +
   geom_errorbar(aes(ymax = upper, ymin = lower), width = 0.25, position = position_dodge(width = 0.75), size = 1) +
@@ -165,4 +168,5 @@ p4 <- ggplot(site_preds8, aes(x = treatment, y = Predicted, fill = treatment)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
+ggsave("unmarked_occu_pt_est_enes.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 

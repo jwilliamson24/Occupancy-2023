@@ -24,18 +24,11 @@ source('attach.nimble_v2.R')
 load("./all.spp_model.RData")
 attach.nimble(mcmc.output.1$samples)
 
-# Inv logit TreatmentIntercept to get Occupancy Estimates
-trt.int.inv <- inv.logit(TreatmentIntercept)
 
-treatment_matrix <- trt.int.inv # Using the inv logit treatment estimates
-
+trt.int.inv <- inv.logit(TreatmentIntercept) # Inv logit TreatmentIntercept to get Occupancy Estimates
+treatment_matrix <- trt.int.inv
 
  box.colors.1 <- c('lightgreen','steelblue', 'coral2', '#f9d62e','#b967ff' )
-# boxplot(TreatmentIntercept_new, 
-#         main= "treatment effect size",
-#         xlab = "trt difference from control",
-#         ylab = "effect size",
-#         col = box.colors.1)
 
 # Build matrix of trt - control effects
 diff.BS <- TreatmentIntercept[,1]-TreatmentIntercept[,5]
