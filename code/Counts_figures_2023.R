@@ -16,9 +16,8 @@ library(RColorBrewer)
 library(tidyverse)
 library(ggpattern)
 
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Analysis Pleth Conf 2023")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
 treatmentcount.species <- read.csv("treatmentcount.species.csv")
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Working Data")
 sitecovs <- read.csv("sitecovs.csv", row.names = 1)
 sitecovs$treatment <- factor(sitecovs$treatment, 
                              levels = c("UU", "BU", "HB", "HU", "BS"))
@@ -66,7 +65,7 @@ p2 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
 
 ##------------------------------------------------------------------------------------------------------
 # Standardized barplot per treatment 
-png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Counts_figures_2023/barplot_counts_standardized.png")
+png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Counts_figures_2023/barplotjune.png")
 ggplot(trt_counts_merged, aes(x=trt_counts_merged$treatment, y=standardized.count, fill=treatment, pattern=species)) +
   geom_bar(stat='identity', position='dodge', color="black") +
   ggtitle('Salamander Counts by Treatment and Species') +
