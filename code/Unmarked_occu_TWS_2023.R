@@ -10,7 +10,7 @@
 ## --------------------------------------------------------------------------------------------------------
 
 rm(list=ls())
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Working Data")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/data")
 
 library(unmarked)
 library(ggplot2)
@@ -95,7 +95,8 @@ ggplot(site_preds4, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
-ggsave("unmarked_occu_barplot_oss.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
+ggsave("unmarked_occu_barplot_oss.png", 
+       path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 # Boxplot of preds with confidence intervals
@@ -108,7 +109,8 @@ ggplot(site_preds4, aes(x = treatment, y = Predicted, fill = treatment)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
-ggsave("unmarked_occu_pt_est_oss.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
+ggsave("unmarked_occu_pt_est_oss.png", 
+      path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 ## ENES Top Model Exploration-------------------------------------------------------------------------------
@@ -155,7 +157,8 @@ ggplot(site_preds8, aes(x = treatment, y = Predicted, ymin = lower, ymax = upper
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
-ggsave("unmarked_occu_barplot_enes.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
+ggsave("unmarked_occu_barplot_enes.png", 
+       path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 
 
 # Boxplot of preds with confidence intervals
@@ -168,5 +171,6 @@ ggplot(site_preds8, aes(x = treatment, y = Predicted, fill = treatment)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set1")
-ggsave("unmarked_occu_pt_est_enes.png", path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
+ggsave("unmarked_occu_pt_est_enes.png", 
+       path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Unmarked_occu_TWS_2023")
 

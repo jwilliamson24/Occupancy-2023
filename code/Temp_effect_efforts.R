@@ -11,7 +11,7 @@
 ## --------------------------------------------------------------------------------------------------------
 
 rm(list=ls())
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Working Data")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/data")
 library(nimble)
 library(ggplot2)
 library(data.table)

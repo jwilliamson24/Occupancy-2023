@@ -11,7 +11,7 @@
 ## --------------------------------------------------------------------------------------------------------
 
 rm(list=ls())
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Working Data")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/data")
 library(nimble)
 library(ggplot2)
 library(data.table)
@@ -43,7 +43,7 @@ colnames(trt.diff.new) <- new.names
 desired.order <- c("Control", "Wildfire", "Harvest, Wildfire", "Harvest", "Salvage Logged")
 
 # Boxplot showing negative effect sizes of each treatment
-png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Trt_effect_size_nimble/Boxplot_trt_effect.png")
+png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Trt_effect_size_nimble/Boxplot_trt_effect.png")
 boxplot(trt.diff.new [, match(desired.order, colnames(trt.diff.new))], 
         main= "Effect Size by Treatment",
         xlab = "Treatment",

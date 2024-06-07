@@ -9,7 +9,9 @@ library(RColorBrewer)
 library(tidyverse)
 library(ggpattern)
 
-setwd("~/Academic/OSU/Projects/OSS Project/Analysis Pleth Conf 2023")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
 counts <- read.csv("OSS_data_2023_counts.csv")
 climate <- read.csv("OSS_data_2023_climate.csv")
 treatmentcount <- read.csv("OSS_data_2023_treatmentcount.csv")
@@ -23,7 +25,7 @@ reshaped_data <- treatmentcount.species %>%
 
 # Barplot of counts by date
 
-png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory/counts by date 2023.png")
+png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Pleth_conf_exploratory/counts by date 2023.png")
 barplot(counts$count,
         space=1,
         main="Counts by Date",
@@ -34,24 +36,26 @@ barplot(counts$count,
         [as.factor(counts$month)])
 dev.off()
 
-# Basic climate plots
 
-ggplot(temp, aes(x = ID, y = Temp, group = 1)) +
-        geom_point(color="blue") +
-        geom_line(color="blue", linewidth=2) +
-        theme_classic()+
-        theme(
-                panel.background = element_rect(fill='transparent'),
-                plot.background = element_rect(fill='transparent', color=NA),
-                panel.grid.major = element_blank(),
-                panel.grid.minor = element_blank(),
-                legend.background = element_rect(fill='transparent'),
-                legend.box.background = element_rect(fill='transparent')
-        )
-ggsave("temp_line.png", temps, bg="transparent", 
-  path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory")
+# Transparent temp trend line
 
+p <- ggplot(temp, aes(x = ID, y = Temp, group = 1)) +
+  geom_point(color="blue") +
+  geom_line(color="blue", linetype="solid", size=2) + 
+  theme_classic() +
+  theme(
+    panel.background = element_rect(fill='transparent'),
+    plot.background = element_rect(fill='transparent', color=NA),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.background = element_rect(fill='transparent'),
+    legend.box.background = element_rect(fill='transparent')
+  )
 
+ggsave(filename = "temp_line2.png", plot = p, device = "png", 
+       path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Pleth_conf_exploratory",
+       width = 10, height = 8, units = "in", dpi = 300, bg = "transparent")
+dev.off()
 
 ##------------------------------------------------------------------------------------------------------
 
@@ -64,7 +68,8 @@ ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
   ylab('Count') +
   scale_fill_manual('Species', values=c('coral2','steelblue'))
 ggsave("counts by trt spp 2023.png", 
-      path = "C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Pleth_conf_exploratory")
+       path = "C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Pleth_conf_exploratory")
+       
 
 
 #A single bar with enes and oss counts
@@ -73,6 +78,10 @@ ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment)) +
   ggtitle('Salamander Counts by Treatment and Species') +
   xlab('Treatment') +
   ylab('Count')
+
+
+
+
 
 
 

@@ -65,7 +65,7 @@ p2 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
 
 ##------------------------------------------------------------------------------------------------------
 # Standardized barplot per treatment 
-png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Counts_figures_2023/barplotjune.png")
+png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Counts_figures_2023/barplot_standzd_counts.png")
 ggplot(trt_counts_merged, aes(x=trt_counts_merged$treatment, y=standardized.count, fill=treatment, pattern=species)) +
   geom_bar(stat='identity', position='dodge', color="black") +
   ggtitle('Salamander Counts by Treatment and Species') +

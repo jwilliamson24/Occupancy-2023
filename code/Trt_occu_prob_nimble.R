@@ -11,7 +11,7 @@
 ## --------------------------------------------------------------------------------------------------------
 
 rm(list=ls())
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Projects/OSS Project/Working Data")
+setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/data")
 library(nimble)
 library(ggplot2)
 library(data.table)
@@ -169,7 +169,7 @@ desired.order <- c("Control", "Wildfire", "Harvest, Wildfire", "Harvest", "Salva
 box.colors <- c('lightgreen','steelblue', 'coral2', '#f9d62e', '#b967ff' )
 
 # Boxplot of Treatment Estimates
-png("C:/Users/jasmi/OneDrive/Documents/Occupancy-2023/figures/Trt_occu_prob_nimble/Boxplot_trt_occu_prob_nimble.png")
+png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Trt_occu_prob_nimble/Boxplot_trt_occu_prob_nimble.png")
 boxplot(treatment_matrix[, match(desired.order, colnames(treatment_matrix))], 
         main = "Treatment Intercepts for All Species", 
         xlab = "Treatment", ylab = "Occupancy Probability",
