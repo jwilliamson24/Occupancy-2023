@@ -10,8 +10,6 @@ library(tidyverse)
 library(ggpattern)
 
 setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
-setwd("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/Analysis Pleth Conf 2023")
 counts <- read.csv("OSS_data_2023_counts.csv")
 climate <- read.csv("OSS_data_2023_climate.csv")
 treatmentcount <- read.csv("OSS_data_2023_treatmentcount.csv")

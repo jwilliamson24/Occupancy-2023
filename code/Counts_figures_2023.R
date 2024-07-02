@@ -45,7 +45,7 @@ trt_counts_merged$treatment <- factor(trt_counts_merged$treatment,
 
 
 ##------------------------------------------------------------------------------------------------------
-# Bar plots of counts by treatment and species
+# Bar plots of counts by treatment and species - NOT STANDARDIZED
 
 # Single bar for each trt with total counts
 p1 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment)) +
@@ -53,6 +53,7 @@ p1 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=treatment)) +
   ggtitle('Salamander Counts by Treatment and Species') +
   xlab('Treatment') +
   ylab('Count')
+p1
 
 #A bar for each spp, color fill by species
 p2 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
@@ -61,12 +62,13 @@ p2 <- ggplot(reshaped_data, aes(x=treatment, y=count, fill=species)) +
   xlab('Treatment') +
   ylab('Count') +
   scale_fill_manual('Species', values=c('coral2','steelblue'))
+p2
 
 
 ##------------------------------------------------------------------------------------------------------
 # Standardized barplot per treatment 
 png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Counts_figures_2023/barplot_standzd_counts.png")
-ggplot(trt_counts_merged, aes(x=trt_counts_merged$treatment, y=standardized.count, fill=treatment, pattern=species)) +
+ggplot(trt_counts_merged, aes(x=treatment, y=standardized.count, fill=treatment, pattern=species)) +
   geom_bar(stat='identity', position='dodge', color="black") +
   ggtitle('Salamander Counts by Treatment and Species') +
   xlab('Treatment') +
