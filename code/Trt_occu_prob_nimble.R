@@ -49,7 +49,8 @@ scaled_temp <- c(scale(data$temp))
 
 all.spp.model.1 <- nimbleCode ({
   
-  # Priors
+  # Priors 
+  # uninformative, vague priors
 
   for(t in 1:n.treatments){
     TreatmentIntercept[t] ~ dunif(-10,10)
@@ -62,16 +63,17 @@ all.spp.model.1 <- nimbleCode ({
   # Likelihood
   
   # Process/Biological model = Occupancy
-  # need two pieces: one defining psi and covariates, and one defining z dist
+  # need two pieces: one defining psi(occu prob coeff) and covariates, and one defining z dist
   for(i in 1:n.sites) {
       logit(psi[i]) <- TreatmentIntercept[treatment[i]]  #psi=occupancy probability
       z[i] ~ dbern(psi[i])  # z=1 if occupied, z=latent true occupancy
   }#i
   
   # Observation model = Detection
-  # need two pieces: one for det coeff and one defining Y distribution
+  # need two pieces: one for p(det prob coeff) and one defining Y distribution
   for(j in 1:n.obs) {
       logit(p[j]) <- DetectionIntercept + betaTemp*temp[j] + betaTemp2*temp[j]^2 
+      #using temp as covariate with a quadratic relationship
       #p=detection probability for site i and survey j
       Y[j] ~ dbern(p[j] * z[site[j]]) #Y=my actual data observations
       #z=1 or 0, turns this on or off
@@ -138,6 +140,10 @@ MCMCtrace(object = mcmc.output.1$samples,
           pdf = FALSE, # no export to PDF
           ind = TRUE, # separate density lines per chain
           params = c("DetectionIntercept", "betaTemp", "TreatmentIntercept"))
+#this looks good:
+#caterpillars on traceplot are mostly lined up/overlapping
+#parameter estimate lines on density plot are mostly overlapping
+
 
 #mean(det.probs.inv) # = 0.3207378
 #mean(det.probs.inv>0)  # = 1
@@ -153,8 +159,6 @@ trt.int.inv <- inv.logit(TreatmentIntercept)
 #median(trt.int.inv[,5]) # 0.9977257    UU
 
 
-## Plotting Model Outputs-------------------------------------------------------------------------------------------------------
-
 
 ## Boxplot for Treatment Effects-----------------------------------------------------------------------------------------------
 
@@ -168,8 +172,8 @@ desired.order <- c("Control", "Wildfire", "Harvest, Wildfire", "Harvest", "Salva
 
 box.colors <- c('lightgreen','steelblue', 'coral2', '#f9d62e', '#b967ff' )
 
-# Boxplot of Treatment Estimates
-png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Trt_occu_prob_nimble/Boxplot_trt_occu_prob_nimble.png")
+# Boxplot of Treatment Estimates - occu orob for each treatment
+#png("C:/Users/jasmi/OneDrive/Documents/Academic/OSU/Git/Occupancy-2023/figures/Trt_occu_prob_nimble/Boxplot_trt_occu_prob_nimble.png")
 boxplot(treatment_matrix[, match(desired.order, colnames(treatment_matrix))], 
         main = "Treatment Intercepts for All Species", 
         xlab = "Treatment", ylab = "Occupancy Probability",
